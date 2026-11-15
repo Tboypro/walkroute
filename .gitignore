@@ -1,0 +1,19 @@
+# Dependencies and builds
+node_modules/
+dist/
+
+# Secrets and settings. Never commit these.
+.env
+.env.*
+*.pem
+*.key
+
+# Logs and archives
+*.log
+*.zip
+
+# Editors and systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
