@@ -24,3 +24,19 @@ A path is a list of spot names. Spots next to each other in the list are joined 
 ```
 
 Two paths meet where they share the same spot name.
+
+## PLACES
+
+The things people can search for.
+
+| Field | Meaning |
+| --- | --- |
+| `id` | Must match a spot in `NODES`. That spot is the door. |
+| `name` | The full name, shown on the card. |
+| `short` | A short name drawn on the map. |
+| `type` | A small label, like `Study` or `Food`. |
+| `nick` | Other names people might type. |
+| `rect` | The building shape `[x, y, width, height]`, or `null` for a landmark. |
+| `about`, `hours`, `facilities` | Shown on the card. |
+
+`GRASS` and `POND` only decorate the map.
