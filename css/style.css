@@ -3,4 +3,16 @@
 html, body { height: 100%; margin: 0; }
 body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1f2937; background: #eef3ea; }
 button, input, select { font: inherit; }
-#app { padding: 24px; }
+
+/* The map */
+#app { position: relative; height: 100%; overflow: hidden; }
+#map { position: absolute; inset: 0; }
+#map svg { width: 100%; height: 100%; display: block; touch-action: none; }
+.map-ground { fill: #eef3ea; }
+.grass { fill: #d9ead3; }
+.pond { fill: #bfdcf0; }
+.map-title { font-size: 16px; fill: #6b7280; }
+.road-edge { fill: none; stroke: #d6d3cb; stroke-width: 18; stroke-linecap: round; stroke-linejoin: round; }
+.road { fill: none; stroke: #fff; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
+.house { fill: #e7dfd0; stroke: #bdb4a2; stroke-width: 2; }
+.landmark { fill: #6b7280; stroke: #fff; stroke-width: 3; }
