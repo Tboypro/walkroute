@@ -2,6 +2,7 @@
 import { createMap } from './map.js';
 import { PLACES } from './data.js';
 import { showCard } from './ui.js';
+import { setupSearch } from './ui.js';
 
 const byId = new Map(PLACES.map((p) => [p.id, p]));
 const sheet = document.getElementById('sheet');
@@ -25,3 +26,5 @@ function reset() {
 // Directions: find the shortest way and show it.
 
 // Start: the dot walks the route by itself. It is a simulation and never uses GPS.
+
+setupSearch(document.getElementById('search'), document.getElementById('results'), PLACES, pick);
