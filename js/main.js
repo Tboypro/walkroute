@@ -1,11 +1,26 @@
 // Connects the map, the search box and the bottom sheet.
 import { createMap } from './map.js';
+import { PLACES } from './data.js';
+import { showCard } from './ui.js';
 
-const map = createMap(document.getElementById('map'), { onPick: (id) => map.select(id) });
+const byId = new Map(PLACES.map((p) => [p.id, p]));
+const sheet = document.getElementById('sheet');
+const map = createMap(document.getElementById('map'), { onPick: pick });
+let to = null; // where we are going
 
 // Tap a building (on the map or in the search): show its card.
+function pick(id) {
+  to = id;
+  map.select(id);
+  showCard(sheet, byId.get(id), { onClose: reset });
+}
 
 // Close everything and go back to the plain map.
+function reset() {
+  to = null;
+  map.select(null);
+  sheet.replaceChildren();
+}
 
 // Directions: find the shortest way and show it.
 
