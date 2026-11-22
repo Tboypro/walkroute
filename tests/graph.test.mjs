@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import { NODES, PLACES } from '../js/data.js';
 import { buildGraph } from '../js/graph.js';
 import { shortestPath } from '../js/graph.js';
+import { walkMinutes, routePoints, lengthOf, pointAlong } from '../js/graph.js';
 
 const graph = buildGraph();
 
@@ -37,4 +38,22 @@ test('gate to science is about 522 metres', () => {
 
 test('an unknown place gives no route', () => {
   assert.equal(shortestPath(graph, 'gate', 'nowhere'), null);
+});
+
+test('walking time is at least one minute', () => {
+  assert.equal(walkMinutes(1), 1);
+  assert.equal(walkMinutes(780), 10);
+});
+
+test('lengthOf adds up the pieces', () => {
+  assert.equal(lengthOf([[0, 0], [3, 4], [3, 14]]), 15);
+});
+
+test('pointAlong finds the spot and the direction', () => {
+  const line = [[0, 0], [10, 0], [10, 10]];
+  assert.deepEqual(pointAlong(line, 5), { x: 5, y: 0, angle: 0 });
+  const turned = pointAlong(line, 15);
+  assert.equal(turned.x, 10);
+  assert.equal(turned.y, 5);
+  assert.ok(Math.abs(turned.angle - Math.PI / 2) < 1e-9);
 });
