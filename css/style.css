@@ -33,3 +33,12 @@ h2 { margin: 0; font-size: 1.25rem; }
 .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
 .chip { background: #eef2ff; color: #3730a3; padding: 4px 10px; border-radius: 999px; font-size: .8rem; }
 .about { color: #4b5563; margin: 10px 0 0; }
+
+/* Search */
+.search { position: absolute; top: 12px; left: 12px; right: 12px; max-width: 560px; margin: 0 auto; }
+.search input { width: 100%; padding: 14px 16px; border: 0; border-radius: 14px; box-shadow: 0 2px 12px rgba(0, 0, 0, .18); font-size: 1rem; }
+#results { list-style: none; margin: 6px 0 0; padding: 4px; background: #fff; border-radius: 14px; box-shadow: 0 2px 12px rgba(0, 0, 0, .18); }
+#results button { display: flex; justify-content: space-between; width: 100%; padding: 10px 12px; border: 0; background: none; text-align: left; cursor: pointer; border-radius: 10px; }
+#results button:hover { background: #f3f4f6; }
+#results span { color: #6b7280; font-size: .85rem; }
+.none { padding: 10px 12px; color: #6b7280; }
