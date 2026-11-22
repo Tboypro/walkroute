@@ -1,4 +1,5 @@
 // The bottom sheet and the search box. Plain DOM, no libraries.
+import { searchPlaces } from './search.js';
 
 // Make an HTML element in one line.
 function h(tag, props = {}, ...kids) {
@@ -23,4 +24,26 @@ export function showCard(sheet, place, { onDirections, onClose } = {}) {
     h('div', { class: 'chips' }, chip(place.type)),
     h('p', { class: 'about' }, place.about),
   );
+}
+
+// The search box. Shows up to five matches under it.
+export function setupSearch(input, list, places, onPick) {
+  const close = () => {
+    list.replaceChildren();
+    list.hidden = true;
+  };
+  input.addEventListener('input', () => {
+    const text = input.value.trim();
+    if (!text) return close();
+    const rows = searchPlaces(places, text).slice(0, 5).map((p) =>
+      h('li', {}, h('button', { onclick: () => { input.value = p.name; close(); onPick(p.id); } }, h('b', {}, p.name), h('span', {}, p.type))));
+    list.replaceChildren(...(rows.length ? rows : [h('li', { class: 'none' }, 'No place found')]));
+    list.hidden = false;
+  });
+  input.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      input.value = '';
+      close();
+    }
+  });
 }
