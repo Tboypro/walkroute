@@ -23,6 +23,8 @@ export function showCard(sheet, place, { onDirections, onClose } = {}) {
     h('div', { class: 'row' }, h('h2', {}, place.name), h('button', { class: 'icon', 'aria-label': 'Close', onclick: onClose }, '×')),
     h('div', { class: 'chips' }, chip(place.type)),
     h('p', { class: 'about' }, place.about),
+    h('p', { class: 'hours' }, 'Open: ' + place.hours),
+    h('div', { class: 'chips' }, ...place.facilities.map((f) => chip(f))),
   );
 }
 
