@@ -16,3 +16,9 @@ button, input, select { font: inherit; }
 .road { fill: none; stroke: #fff; stroke-width: 12; stroke-linecap: round; stroke-linejoin: round; }
 .house { fill: #e7dfd0; stroke: #bdb4a2; stroke-width: 2; }
 .landmark { fill: #6b7280; stroke: #fff; stroke-width: 3; }
+
+.place { cursor: pointer; outline: none; }
+.label { font-size: 12px; font-weight: 600; fill: #374151; text-anchor: middle; pointer-events: none; }
+.door { fill: #fff; stroke: #9a8f7a; stroke-width: 2; }
+.place:hover .house, .place:focus-visible .house { fill: #f0e6d2; }
+.place.selected .house { fill: #fcd9a8; stroke: #f59e0b; stroke-width: 3; }
