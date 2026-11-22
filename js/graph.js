@@ -47,37 +47,3 @@ export function shortestPath(graph, from, to) {
   while (spots[0] !== from) spots.unshift(before.get(spots[0]));
   return { nodes: spots, metres: best.get(to) };
 }
-
-export const METRES_PER_MINUTE = 78; // a normal walking pace
-
-export function walkMinutes(metres) {
-  return Math.max(1, Math.round(metres / METRES_PER_MINUTE));
-}
-
-// Spot ids -> [x, y] points.
-export function routePoints(ids, nodes = NODES) {
-  return ids.map((id) => nodes[id]);
-}
-
-// Total length of a line, in map units.
-export function lengthOf(points) {
-  let total = 0;
-  for (let i = 1; i < points.length; i++) total += distance(points[i - 1], points[i]);
-  return total;
-}
-
-// Where you are after walking `units` along the line, and which way you face.
-export function pointAlong(points, units) {
-  let left = Math.max(0, units);
-  for (let i = 1; i < points.length; i++) {
-    const length = distance(points[i - 1], points[i]);
-    if (left <= length || i === points.length - 1) {
-      const t = length === 0 ? 1 : Math.min(1, left / length);
-      const [ax, ay] = points[i - 1];
-      const [bx, by] = points[i];
-      return { x: ax + (bx - ax) * t, y: ay + (by - ay) * t, angle: Math.atan2(by - ay, bx - ax) };
-    }
-    left -= length;
-  }
-  return { x: points[0][0], y: points[0][1], angle: 0 };
-}
