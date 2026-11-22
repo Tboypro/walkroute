@@ -1,0 +1,11 @@
+{
+  "name": "pocket-wayfinder",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "UNLICENSED",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "test": "node --test"
+  }
+}
