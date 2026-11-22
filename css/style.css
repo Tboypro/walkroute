@@ -22,3 +22,14 @@ button, input, select { font: inherit; }
 .door { fill: #fff; stroke: #9a8f7a; stroke-width: 2; }
 .place:hover .house, .place:focus-visible .house { fill: #f0e6d2; }
 .place.selected .house { fill: #fcd9a8; stroke: #f59e0b; stroke-width: 3; }
+
+/* The bottom sheet */
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; margin: 0 auto; max-width: 560px; background: #fff; border-radius: 20px 20px 0 0; box-shadow: 0 -6px 24px rgba(0, 0, 0, .15); padding: 8px 20px calc(20px + env(safe-area-inset-bottom)); }
+.sheet:empty { display: none; }
+.handle { width: 40px; height: 4px; border-radius: 2px; background: #d1d5db; margin: 0 auto 12px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+h2 { margin: 0; font-size: 1.25rem; }
+.icon { border: 0; background: #f3f4f6; width: 36px; height: 36px; border-radius: 50%; font-size: 1.1rem; cursor: pointer; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+.chip { background: #eef2ff; color: #3730a3; padding: 4px 10px; border-radius: 999px; font-size: .8rem; }
+.about { color: #4b5563; margin: 10px 0 0; }
