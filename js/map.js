@@ -46,9 +46,27 @@ export function createMap(container, { onPick } = {}) {
     } else {
       g.append(el('circle', { cx: nx, cy: ny, r: 12, class: 'landmark' }));
     }
+    g.append(el('circle', { cx: nx, cy: ny, r: 5, class: 'door' }));
+    const [lx, ly] = place.rect ? [place.rect[0] + place.rect[2] / 2, place.rect[1] + place.rect[3] / 2] : [nx, ny - 22];
+    g.append(el('text', { x: lx, y: ly + 4, class: 'label' }, place.short));
+    g.setAttribute('tabindex', '0');
+    g.setAttribute('role', 'button');
+    g.setAttribute('aria-label', place.name);
+    g.addEventListener('click', () => onPick && onPick(place.id));
+    g.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onPick && onPick(place.id);
+      }
+    });
     groups.set(place.id, g);
     layers.places.append(g);
   }
+
+  // Highlight one building (or none, with null).
+  api.select = (id) => {
+    for (const [placeId, g] of groups) g.classList.toggle('selected', placeId === id);
+  };
 
   return api;
 }

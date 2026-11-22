@@ -1,7 +1,7 @@
 // Connects the map, the search box and the bottom sheet.
 import { createMap } from './map.js';
 
-createMap(document.getElementById('map'));
+const map = createMap(document.getElementById('map'), { onPick: (id) => map.select(id) });
 
 // Tap a building (on the map or in the search): show its card.
 
