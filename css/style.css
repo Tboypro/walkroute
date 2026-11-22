@@ -42,3 +42,5 @@ h2 { margin: 0; font-size: 1.25rem; }
 #results button:hover { background: #f3f4f6; }
 #results span { color: #6b7280; font-size: .85rem; }
 .none { padding: 10px 12px; color: #6b7280; }
+
+.hours { margin: 8px 0 0; font-size: .9rem; color: #4b5563; }
