@@ -82,5 +82,23 @@ export function createMap(container, { onPick } = {}) {
     layers.pins.replaceChildren();
   };
 
+  // The blue "you are here" dot, with an arrow that shows which way it faces.
+  let dot = null;
+  let arrow = null;
+  api.setDot = (x, y, angle) => {
+    if (!dot) {
+      arrow = el('path', { d: 'M0,-26 L9,-12 L-9,-12 Z', class: 'me-arrow' });
+      dot = el('g', { class: 'me' }, el('circle', { r: 22, class: 'me-pulse' }), arrow, el('circle', { r: 9, class: 'me-dot' }));
+      layers.dot.append(dot);
+    }
+    dot.setAttribute('transform', `translate(${x} ${y})`);
+    arrow.setAttribute('transform', `rotate(${(angle * 180) / Math.PI + 90})`);
+  };
+  api.hideDot = () => {
+    layers.dot.replaceChildren();
+    dot = null;
+    arrow = null;
+  };
+
   return api;
 }
