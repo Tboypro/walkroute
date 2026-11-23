@@ -57,3 +57,11 @@ test('pointAlong finds the spot and the direction', () => {
   assert.equal(turned.y, 5);
   assert.ok(Math.abs(turned.angle - Math.PI / 2) < 1e-9);
 });
+
+test('every place can be reached from the main gate', () => {
+  for (const place of PLACES) {
+    const result = shortestPath(graph, 'gate', place.id);
+    assert.ok(result, 'no route to ' + place.name);
+    assert.equal(routePoints(result.nodes).length, result.nodes.length);
+  }
+});
