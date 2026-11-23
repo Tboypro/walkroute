@@ -12,6 +12,7 @@ let to = null; // where we are going
 // Tap a building (on the map or in the search): show its card.
 function pick(id) {
   to = id;
+  map.clearRoute();
   map.select(id);
   showCard(sheet, byId.get(id), { onClose: reset });
 }
@@ -20,6 +21,7 @@ function pick(id) {
 function reset() {
   to = null;
   map.select(null);
+  map.clearRoute();
   sheet.replaceChildren();
 }
 
