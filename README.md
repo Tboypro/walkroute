@@ -11,6 +11,10 @@ A small demo of a map and walking navigation app. Search a place, see the shorte
 
 - A drawn map of the demo area
 - Tap a building to see its card
+- Search by name or nickname ("canteen" finds the Student Hub)
+- Opening hours and facilities on every card
+- The shortest route between two places, with distance and walking time
+- Pick where you start from
 
 ## Run it on your computer
 
@@ -21,6 +25,16 @@ python -m http.server 8080
 ```
 
 Then open http://localhost:8080 in your browser. (`npx serve` works too if you use Node.)
+
+## How routing works
+
+The paths are a list of spots (`NODES`) and lines between them (`PATHS`). The app turns them into a graph where every spot knows its neighbours and how many metres away they are. When you ask for directions it runs Dijkstra's algorithm to find the shortest way, then draws that line on the map. Walking time is the distance divided by a normal walking pace.
+
+## Tests
+
+```bash
+npm test
+```
 
 ## Licence
 
