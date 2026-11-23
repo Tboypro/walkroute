@@ -57,3 +57,9 @@ h2 { margin: 0; font-size: 1.25rem; }
 .from select { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #d1d5db; }
 .trip { margin: 12px 0 0; font-size: 1.1rem; }
 .note { margin: 2px 0 0; color: #6b7280; font-size: .85rem; }
+
+/* The moving dot */
+.me-dot { fill: #1a56db; stroke: #fff; stroke-width: 4; }
+.me-arrow { fill: #1a56db; }
+.me-pulse { fill: rgba(26, 86, 219, .25); animation: pulse 1.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes pulse { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
