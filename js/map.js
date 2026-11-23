@@ -68,5 +68,19 @@ export function createMap(container, { onPick } = {}) {
     for (const [placeId, g] of groups) g.classList.toggle('selected', placeId === id);
   };
 
+  // Draw the route as a blue line with a green start and a red end.
+  api.showRoute = (points) => {
+    api.clearRoute();
+    const line = points.map((p) => p.join(',')).join(' ');
+    layers.route.append(el('polyline', { points: line, class: 'route-casing' }), el('polyline', { points: line, class: 'route-line' }));
+    const [sx, sy] = points[0];
+    const [ex, ey] = points[points.length - 1];
+    layers.pins.append(el('circle', { cx: sx, cy: sy, r: 9, class: 'pin-start' }), el('circle', { cx: ex, cy: ey, r: 9, class: 'pin-end' }));
+  };
+  api.clearRoute = () => {
+    layers.route.replaceChildren();
+    layers.pins.replaceChildren();
+  };
+
   return api;
 }
