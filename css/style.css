@@ -50,3 +50,10 @@ h2 { margin: 0; font-size: 1.25rem; }
 .route-line { fill: none; stroke: #1a56db; stroke-width: 7; stroke-linecap: round; stroke-linejoin: round; }
 .pin-start { fill: #16a34a; stroke: #fff; stroke-width: 3; }
 .pin-end { fill: #dc2626; stroke: #fff; stroke-width: 3; }
+
+.primary { width: 100%; margin-top: 14px; padding: 14px; border: 0; border-radius: 12px; background: #1a56db; color: #fff; font-weight: 600; cursor: pointer; }
+.ghost { width: 100%; margin-top: 8px; padding: 12px; border: 0; border-radius: 12px; background: #f3f4f6; cursor: pointer; }
+.from { display: flex; align-items: center; gap: 8px; margin-top: 10px; color: #4b5563; }
+.from select { flex: 1; padding: 8px; border-radius: 8px; border: 1px solid #d1d5db; }
+.trip { margin: 12px 0 0; font-size: 1.1rem; }
+.note { margin: 2px 0 0; color: #6b7280; font-size: .85rem; }
