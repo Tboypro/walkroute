@@ -16,6 +16,10 @@ function h(tag, props = {}, ...kids) {
 
 const chip = (text) => h('span', { class: 'chip' }, text);
 
+function formatMetres(metres) {
+  return metres < 1000 ? Math.round(metres / 5) * 5 + ' m' : (metres / 1000).toFixed(1) + ' km';
+}
+
 // A card about one place.
 export function showCard(sheet, place, { onDirections, onClose } = {}) {
   sheet.replaceChildren(
@@ -25,6 +29,7 @@ export function showCard(sheet, place, { onDirections, onClose } = {}) {
     h('p', { class: 'about' }, place.about),
     h('p', { class: 'hours' }, 'Open: ' + place.hours),
     h('div', { class: 'chips' }, ...place.facilities.map((f) => chip(f))),
+    onDirections && h('button', { class: 'primary', onclick: onDirections }, 'Directions'),
   );
 }
 
@@ -48,4 +53,23 @@ export function setupSearch(input, list, places, onPick) {
       close();
     }
   });
+}
+
+// The route card: where from, how far, how long.
+export function showRoute(sheet, { places, from, to, metres, minutes, onFrom, onStart, onBack }) {
+  const here = metres === 0; // start and end are the same place
+  const select = h('select', { 'aria-label': 'Start from', onchange: (e) => onFrom(e.target.value) },
+    ...places.map((p) => {
+      const option = h('option', { value: p.id }, p.name);
+      option.selected = p.id === from;
+      return option;
+    }));
+  sheet.replaceChildren(
+    h('div', { class: 'handle' }),
+    h('div', { class: 'row' }, h('h2', {}, 'To ' + to.name), h('button', { class: 'icon', 'aria-label': 'Back', onclick: onBack }, '←')),
+    h('label', { class: 'from' }, 'From', select),
+    here ? h('p', { class: 'trip' }, 'You are already here. Pick another start.')
+      : h('p', { class: 'trip' }, h('b', {}, formatMetres(metres)), ' · ' + minutes + ' min walk'),
+    h('p', { class: 'note' }, 'Walking time is an estimate.'),
+  );
 }
