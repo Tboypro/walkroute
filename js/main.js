@@ -7,6 +7,7 @@ import { buildGraph, shortestPath, walkMinutes, routePoints } from './graph.js';
 import { showRoute } from './ui.js';
 import { startWalk } from './walk.js';
 import { showNav } from './ui.js';
+import { showArrived } from './ui.js';
 
 const byId = new Map(PLACES.map((p) => [p.id, p]));
 const sheet = document.getElementById('sheet');
@@ -59,7 +60,7 @@ function begin(points) {
       map.setDot(x, y, angle);
       hud.update(walked, total);
     },
-    onArrive: () => {},
+    onArrive: () => showArrived(sheet, { to: byId.get(to), onDone: reset, onAgain: planRoute }),
   });
 }
 
