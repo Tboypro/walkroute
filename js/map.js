@@ -100,5 +100,32 @@ export function createMap(container, { onPick } = {}) {
     arrow = null;
   };
 
+  // The camera. It glides toward a target, so following the dot looks smooth.
+  const cam = { x: W / 2, y: H / 2, zoom: 1 };
+  let target = { ...cam };
+  let easing = 0;
+  function paint() {
+    const w = W / cam.zoom;
+    const h = H / cam.zoom;
+    const x = Math.min(Math.max(cam.x - w / 2, 0), W - w);
+    const y = Math.min(Math.max(cam.y - h / 2, 0), H - h);
+    svg.setAttribute('viewBox', `${x} ${y} ${w} ${h}`);
+  }
+  function glide() {
+    cam.x += (target.x - cam.x) * 0.15;
+    cam.y += (target.y - cam.y) * 0.15;
+    cam.zoom += (target.zoom - cam.zoom) * 0.15;
+    paint();
+    const close = Math.abs(target.x - cam.x) < 0.5 && Math.abs(target.y - cam.y) < 0.5 && Math.abs(target.zoom - cam.zoom) < 0.005;
+    easing = close ? 0 : requestAnimationFrame(glide);
+  }
+  function goTo(x, y, zoom) {
+    target = { x, y, zoom };
+    if (!easing) easing = requestAnimationFrame(glide);
+  }
+  api.follow = (x, y) => goTo(x, y, 2);
+  api.zoomBy = (factor) => goTo(target.x, target.y, Math.min(3, Math.max(1, target.zoom * factor)));
+  api.resetView = () => goTo(W / 2, H / 2, 1);
+
   return api;
 }
