@@ -1,5 +1,7 @@
 // The bottom sheet and the search box. Plain DOM, no libraries.
 import { searchPlaces } from './search.js';
+import { SCALE } from './data.js';
+import { walkMinutes } from './graph.js';
 
 // Make an HTML element in one line.
 function h(tag, props = {}, ...kids) {
@@ -71,5 +73,25 @@ export function showRoute(sheet, { places, from, to, metres, minutes, onFrom, on
     here ? h('p', { class: 'trip' }, 'You are already here. Pick another start.')
       : h('p', { class: 'trip' }, h('b', {}, formatMetres(metres)), ' · ' + minutes + ' min walk'),
     h('p', { class: 'note' }, 'Walking time is an estimate.'),
+    !here && onStart && h('button', { class: 'primary', onclick: onStart }, 'Start walking'),
   );
+}
+
+// The card shown while the dot walks. `update` is called many times a second.
+export function showNav(sheet, { to, onStop, onFast }) {
+  const left = h('b');
+  const time = h('span');
+  sheet.replaceChildren(
+    h('div', { class: 'handle' }),
+    h('h2', {}, 'Walking to ' + to.name),
+    h('p', { class: 'trip' }, left, ' left · ', time),
+    h('button', { class: 'ghost', onclick: onStop }, 'Stop'),
+  );
+  return {
+    update(walked, total) {
+      const metres = (total - walked) * SCALE;
+      left.textContent = formatMetres(metres);
+      time.textContent = walkMinutes(metres) + ' min';
+    },
+  };
 }
