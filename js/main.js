@@ -33,6 +33,7 @@ function reset() {
   to = null;
   map.select(null);
   map.clearRoute();
+  map.resetView();
   sheet.replaceChildren();
 }
 
@@ -43,6 +44,7 @@ function planRoute() {
   if (!result) return;
   const points = routePoints(result.nodes);
   map.showRoute(points);
+  map.resetView();
   showRoute(sheet, {
     places: PLACES, from, to: byId.get(to), metres: result.metres, minutes: walkMinutes(result.metres),
     onFrom: (id) => { from = id; planRoute(); },
@@ -58,6 +60,7 @@ function begin(points) {
   walker = startWalk(points, {
     onTick: ({ x, y, angle, walked, total }) => {
       map.setDot(x, y, angle);
+      map.follow(x, y);
       hud.update(walked, total);
     },
     onArrive: () => showArrived(sheet, { to: byId.get(to), onDone: reset, onAgain: planRoute }),
@@ -71,3 +74,5 @@ function stopWalk() {
 }
 
 setupSearch(document.getElementById('search'), document.getElementById('results'), PLACES, pick);
+document.getElementById('zoom-in').addEventListener('click', () => map.zoomBy(1.4));
+document.getElementById('zoom-out').addEventListener('click', () => map.zoomBy(1 / 1.4));
