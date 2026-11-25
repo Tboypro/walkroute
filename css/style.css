@@ -67,3 +67,5 @@ h2 { margin: 0; font-size: 1.25rem; }
 .arrived { text-align: center; padding: 8px 0 4px; }
 .tick { width: 56px; height: 56px; margin: 0 auto 10px; border-radius: 50%; background: #16a34a; color: #fff; font-size: 1.8rem; display: grid; place-items: center; }
 .arrived p { color: #4b5563; margin: 6px 0 0; }
+
+.fast { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: #4b5563; }
