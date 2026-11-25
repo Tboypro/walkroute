@@ -95,3 +95,12 @@ export function showNav(sheet, { to, onStop, onFast }) {
     },
   };
 }
+
+export function showArrived(sheet, { to, onDone, onAgain }) {
+  sheet.replaceChildren(
+    h('div', { class: 'handle' }),
+    h('div', { class: 'arrived' }, h('div', { class: 'tick' }, '✓'), h('h2', {}, 'You have arrived'), h('p', {}, to.name + ' is right here.')),
+    h('button', { class: 'primary', onclick: onDone }, 'Done'),
+    h('button', { class: 'ghost', onclick: onAgain }, 'Walk it again'),
+  );
+}
