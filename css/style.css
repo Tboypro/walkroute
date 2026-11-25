@@ -63,3 +63,7 @@ h2 { margin: 0; font-size: 1.25rem; }
 .me-arrow { fill: #1a56db; }
 .me-pulse { fill: rgba(26, 86, 219, .25); animation: pulse 1.6s ease-out infinite; transform-box: fill-box; transform-origin: center; }
 @keyframes pulse { from { transform: scale(.4); opacity: 1; } to { transform: scale(1.4); opacity: 0; } }
+
+.arrived { text-align: center; padding: 8px 0 4px; }
+.tick { width: 56px; height: 56px; margin: 0 auto 10px; border-radius: 50%; background: #16a34a; color: #fff; font-size: 1.8rem; display: grid; place-items: center; }
+.arrived p { color: #4b5563; margin: 6px 0 0; }
