@@ -81,10 +81,13 @@ export function showRoute(sheet, { places, from, to, metres, minutes, onFrom, on
 export function showNav(sheet, { to, onStop, onFast }) {
   const left = h('b');
   const time = h('span');
+  const fast = h('label', { class: 'fast' }, h('input', { type: 'checkbox', onchange: (e) => onFast(e.target.checked) }), 'Fast demo');
+  fast.firstChild.checked = true;
   sheet.replaceChildren(
     h('div', { class: 'handle' }),
     h('h2', {}, 'Walking to ' + to.name),
     h('p', { class: 'trip' }, left, ' left · ', time),
+    fast,
     h('button', { class: 'ghost', onclick: onStop }, 'Stop'),
   );
   return {

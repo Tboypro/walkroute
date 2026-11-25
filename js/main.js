@@ -54,7 +54,7 @@ function planRoute() {
 // Start: the dot walks the route by itself. It is a simulation and never uses GPS.
 function begin(points) {
   stopWalk();
-  const hud = showNav(sheet, { to: byId.get(to), onStop: planRoute });
+  const hud = showNav(sheet, { to: byId.get(to), onStop: planRoute, onFast: (on) => walker && walker.setFast(on) });
   walker = startWalk(points, {
     onTick: ({ x, y, angle, walked, total }) => {
       map.setDot(x, y, angle);
