@@ -69,3 +69,6 @@ h2 { margin: 0; font-size: 1.25rem; }
 .arrived p { color: #4b5563; margin: 6px 0 0; }
 
 .fast { display: flex; align-items: center; gap: 8px; margin-top: 12px; color: #4b5563; }
+
+.zoom { position: absolute; right: 12px; top: 76px; display: grid; gap: 8px; }
+.zoom button { width: 44px; height: 44px; border: 0; border-radius: 12px; background: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, .18); font-size: 1.3rem; cursor: pointer; }
