@@ -72,3 +72,6 @@ h2 { margin: 0; font-size: 1.25rem; }
 
 .zoom { position: absolute; right: 12px; top: 76px; display: grid; gap: 8px; }
 .zoom button { width: 44px; height: 44px; border: 0; border-radius: 12px; background: #fff; box-shadow: 0 2px 10px rgba(0, 0, 0, .18); font-size: 1.3rem; cursor: pointer; }
+
+.bar { height: 6px; border-radius: 3px; background: #e5e7eb; margin-top: 12px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 0; background: #1a56db; transition: width .2s linear; }

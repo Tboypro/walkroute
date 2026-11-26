@@ -81,12 +81,14 @@ export function showRoute(sheet, { places, from, to, metres, minutes, onFrom, on
 export function showNav(sheet, { to, onStop, onFast }) {
   const left = h('b');
   const time = h('span');
+  const bar = h('div', { class: 'bar' }, h('i'));
   const fast = h('label', { class: 'fast' }, h('input', { type: 'checkbox', onchange: (e) => onFast(e.target.checked) }), 'Fast demo');
   fast.firstChild.checked = true;
   sheet.replaceChildren(
     h('div', { class: 'handle' }),
     h('h2', {}, 'Walking to ' + to.name),
     h('p', { class: 'trip' }, left, ' left · ', time),
+    bar,
     fast,
     h('button', { class: 'ghost', onclick: onStop }, 'Stop'),
   );
@@ -95,6 +97,7 @@ export function showNav(sheet, { to, onStop, onFast }) {
       const metres = (total - walked) * SCALE;
       left.textContent = formatMetres(metres);
       time.textContent = walkMinutes(metres) + ' min';
+      bar.firstChild.style.width = (total ? (walked / total) * 100 : 100) + '%';
     },
   };
 }
