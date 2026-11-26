@@ -65,3 +65,13 @@ test('every place can be reached from the main gate', () => {
     assert.equal(routePoints(result.nodes).length, result.nodes.length);
   }
 });
+
+test('pointAlong stays on the line at both ends', () => {
+  const line = [[0, 0], [10, 0]];
+  assert.equal(pointAlong(line, -5).x, 0);
+  assert.equal(pointAlong(line, 999).x, 10);
+});
+
+test('a one-point line does not break', () => {
+  assert.deepEqual(pointAlong([[4, 4]], 3), { x: 4, y: 4, angle: 0 });
+});
